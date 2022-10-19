@@ -13,8 +13,8 @@
 @end
 
 @implementation ViewController
-NSString *textFile = @"flutter-tests/file.txt";
-NSString *imageFile = @"flutter-tests/image.jpg";
+NSString *textFile = @"file.txt";
+NSString *downloadUrlFile = @"flutter-tests/downloadUrl.txt";
 
 - (FIRStorageReference *)createStorageRef:(NSString *)fileName {
   FIRStorage *storage = [FIRStorage storage];
@@ -24,52 +24,66 @@ NSString *imageFile = @"flutter-tests/image.jpg";
   return reference;
 }
 
-- (IBAction)addimage:(id)sender {
-  NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://picsum.photos/200"]];
+- (IBAction)downloadurl:(id)sender {
+  NSString *content = @"Put this in a file please.";
+  NSData *data = [content dataUsingEncoding:NSUTF8StringEncoding];
 
-  FIRStorageReference *reference = [self createStorageRef:imageFile];
+  FIRStorageReference *reference = [self createStorageRef:downloadUrlFile];
   [reference putData:data
             metadata:nil
           completion:^(FIRStorageMetadata *metadata, NSError *error) {
             if (error != nil) {
-              NSLog(@"ERROR: %@", error);
+              NSLog(@"ERROR putData: %@", error);
             } else {
-              NSLog(@"SUCCESS");
+              NSLog(@"SUCCESSFULLY putData");
+              
+              FIRStorageReference *reference = [self createStorageRef:downloadUrlFile];
+              // This will fail using the Storage emulator. To see it work, do not use the emulator
+              [reference downloadURLWithCompletion:^(NSURL *URL, NSError *error) {
+                if (error != nil) {
+                  // See metadata property is not a String in the console and I think that is why it fails
+                  NSLog(@"ERROR: %@", error);
+                } else {
+                  NSLog(@"SUCCESS: %@", URL);
+                }
+              }];
             }
           }];
 }
 
-- (IBAction)downloadurl:(id)sender {
-  FIRStorageReference *reference = [self createStorageRef:imageFile];
-  // This will fail using the Storage emulator
-  [reference downloadURLWithCompletion:^(NSURL *URL, NSError *error) {
-    if (error != nil) {
-      NSLog(@"ERROR: %@", error);
-    } else {
-      NSLog(@"SUCCESS: %@", URL);
-    }
-  }];
-}
-
-- (IBAction)createfile:(id)sender {
-  NSString *content = @"Put this in a file please.";
-  NSData *fileContents = [content dataUsingEncoding:NSUTF8StringEncoding];
-  [[NSFileManager defaultManager] createFileAtPath:textFile contents:fileContents attributes:nil];
-}
 
 - (IBAction)putfile:(id)sender {
-  // Remember to create file first
-  FIRStorageReference *reference = [self createStorageRef:textFile];
+  // Write file
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory , textFile];
+  // if file does not exist, create it.
+  if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+      NSString *helloStr = @"hello world";
+      NSError *error;
+      [helloStr writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    if(error) {
+      NSLog(@"Error writing file: %@", error);
+      return;
+    }
+  }
+
+  
+  FIRStorageReference *reference = [self createStorageRef:[NSString stringWithFormat:@"%@/%@", @"flutter-tests", textFile]];
+  
   // This will fail because "path" is expected on metadata
   // which is read-only. We worked around this by using
-  //  initWithDictionary that adds "path" to metadata by using "name" property
+  // initWithDictionary method that adds "path" to metadata by using "name" property under the hood.
+  // but it should be possible with: [[FIRStorageMetadata alloc] init];
   FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
-
-  NSURL *fileUrl = [NSURL fileURLWithPath:textFile];
+  
+  NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
   [reference putFile:fileUrl
             metadata:metadata
           completion:^(FIRStorageMetadata *meta, NSError *error) {
             if (error != nil) {
+              // Should see "Fatal error: Internal error enqueueing a Storage task"
               NSLog(@"ERROR: %@", error);
             } else {
               NSLog(@"SUCCESS");
@@ -80,16 +94,21 @@ NSString *imageFile = @"flutter-tests/image.jpg";
 - (IBAction)updatemetadata:(id)sender {
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   // This custom metadata will be removed when using
-  // initWithDictionary
-  dictionary[@"metadata"] = @{@"some" : @"metadata"};
+  // initWithDictionary method
+  dictionary[@"metadata"] = @{@"foo" : @"bar"};
   FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] initWithDictionary:dictionary];
-  FIRStorageReference *reference = [self createStorageRef:textFile];
+  
+  // PLEASE UNCOMMENT THIS AND COMMENT OUT THE TWO ABOVE LINES TO SEE METADATA CORRECTLY UPDATED
+  //  FIRStorageMetadata *metadata =[[FIRStorageMetadata alloc] init];
+  //  metadata.customMetadata = @{@"foo" : @"bar"};
+  
+  FIRStorageReference *reference = [self createStorageRef:downloadUrlFile];
   [reference updateMetadata:metadata
                  completion:^(FIRStorageMetadata *updatedMetadata, NSError *error) {
                    if (error != nil) {
                      NSLog(@"ERROR: %@", error);
                    } else {
-                     NSLog(@"SUCCESS");
+                     NSLog(@"SUCCESS: %@", updatedMetadata);
                    }
                  }];
 }
