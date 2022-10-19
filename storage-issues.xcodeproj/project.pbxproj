@@ -14,9 +14,12 @@
 		4631C8FC28FE9C6500A64CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4631C8FB28FE9C6500A64CA3 /* Assets.xcassets */; };
 		4631C8FF28FE9C6500A64CA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4631C8FD28FE9C6500A64CA3 /* LaunchScreen.storyboard */; };
 		4631C90228FE9C6500A64CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4631C90128FE9C6500A64CA3 /* main.m */; };
+		46B8C4DB28FFF6CA0098FCB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46B8C4DA28FFF6CA0098FCB4 /* GoogleService-Info.plist */; };
+		CC9B7B913CF4E07BB6BA400D /* Pods_storage_issues.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41612FD3BE05079CE8EE49EC /* Pods_storage_issues.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41612FD3BE05079CE8EE49EC /* Pods_storage_issues.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storage_issues.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4631C8EC28FE9C6300A64CA3 /* storage-issues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "storage-issues.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4631C8EF28FE9C6300A64CA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4631C8F028FE9C6300A64CA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -29,6 +32,9 @@
 		4631C8FE28FE9C6500A64CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4631C90028FE9C6500A64CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4631C90128FE9C6500A64CA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		46B8C4DA28FFF6CA0098FCB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AAB0FEF2E07F10AD1E32D4C1 /* Pods-storage-issues.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storage-issues.release.xcconfig"; path = "Target Support Files/Pods-storage-issues/Pods-storage-issues.release.xcconfig"; sourceTree = "<group>"; };
+		C2B803197EA440E44FCAA495 /* Pods-storage-issues.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storage-issues.debug.xcconfig"; path = "Target Support Files/Pods-storage-issues/Pods-storage-issues.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC9B7B913CF4E07BB6BA400D /* Pods_storage_issues.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,8 +52,11 @@
 		4631C8E328FE9C6300A64CA3 = {
 			isa = PBXGroup;
 			children = (
+				46B8C4DA28FFF6CA0098FCB4 /* GoogleService-Info.plist */,
 				4631C8EE28FE9C6300A64CA3 /* storage-issues */,
 				4631C8ED28FE9C6300A64CA3 /* Products */,
+				9052899581DEFBDDB9A44664 /* Pods */,
+				ADD6DF1D26477CC6C2EE1A7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +86,23 @@
 			path = "storage-issues";
 			sourceTree = "<group>";
 		};
+		9052899581DEFBDDB9A44664 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2B803197EA440E44FCAA495 /* Pods-storage-issues.debug.xcconfig */,
+				AAB0FEF2E07F10AD1E32D4C1 /* Pods-storage-issues.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ADD6DF1D26477CC6C2EE1A7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41612FD3BE05079CE8EE49EC /* Pods_storage_issues.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4631C90528FE9C6500A64CA3 /* Build configuration list for PBXNativeTarget "storage-issues" */;
 			buildPhases = (
+				ED2F2355E910BFE460808B82 /* [CP] Check Pods Manifest.lock */,
 				4631C8E828FE9C6300A64CA3 /* Sources */,
 				4631C8E928FE9C6300A64CA3 /* Frameworks */,
 				4631C8EA28FE9C6300A64CA3 /* Resources */,
+				06D8C33F5A94C7AC81B63F30 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,12 +163,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				4631C8FF28FE9C6500A64CA3 /* LaunchScreen.storyboard in Resources */,
+				46B8C4DB28FFF6CA0098FCB4 /* GoogleService-Info.plist in Resources */,
 				4631C8FC28FE9C6500A64CA3 /* Assets.xcassets in Resources */,
 				4631C8FA28FE9C6300A64CA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06D8C33F5A94C7AC81B63F30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-storage-issues/Pods-storage-issues-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-storage-issues/Pods-storage-issues-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-storage-issues/Pods-storage-issues-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED2F2355E910BFE460808B82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-storage-issues-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4631C8E828FE9C6300A64CA3 /* Sources */ = {
@@ -287,6 +359,7 @@
 		};
 		4631C90628FE9C6500A64CA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2B803197EA440E44FCAA495 /* Pods-storage-issues.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -305,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.invertase.testing.storage-issues";
+				PRODUCT_BUNDLE_IDENTIFIER = io.flutter.plugins.firebase.storage.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,6 +387,7 @@
 		};
 		4631C90728FE9C6500A64CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAB0FEF2E07F10AD1E32D4C1 /* Pods-storage-issues.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -332,7 +406,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.invertase.testing.storage-issues";
+				PRODUCT_BUNDLE_IDENTIFIER = io.flutter.plugins.firebase.storage.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
