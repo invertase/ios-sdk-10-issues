@@ -21,14 +21,6 @@
   FIRStorage *storage = [FIRStorage storage];
 
   [storage useEmulatorWithHost:@"localhost" port:9199];
-  self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-
-
-  UIViewController *controller = [[UIViewController alloc] initWithNibName:@"StorageView" bundle:nil];
-
-  
-  self.window.rootViewController = controller;
-  [self.window makeKeyAndVisible];
 
   return YES;
 }
